@@ -1,5 +1,3 @@
-using System;
-
 namespace CreditCardApplications;
 
 public interface IFrequentFlyerNumberValidator

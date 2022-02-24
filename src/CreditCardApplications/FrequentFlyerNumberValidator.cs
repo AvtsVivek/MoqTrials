@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CreditCardApplications;
+﻿namespace CreditCardApplications;
 
 /// <summary>
 /// Contacts an external service to validate a frequent flyer number.
