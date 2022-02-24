@@ -115,6 +115,8 @@ public class CreditCardApplicationEvaluatorShould
         mockValidator.Setup(x => x.IsValid(It.IsAny<string>())).Returns(true);
 
         // mockValidator.Setup(x => x.LicenseKey).Returns("EXPIRED");
+
+        // The following is another way. Getting the stuff from a function.
         mockValidator.Setup(x => x.LicenseKey).Returns(this.GetLicenseKeyExpiryString);
 
         var sut = new CreditCardApplicationEvaluator(mockValidator.Object);
