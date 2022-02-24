@@ -1,4 +1,4 @@
-﻿namespace CreditCardApplications;
+namespace CreditCardApplications;
 
 /// <summary>
 /// Contacts an external service to validate a frequent flyer number.
@@ -22,5 +22,13 @@ public class FrequentFlyerNumberValidatorService : IFrequentFlyerNumberValidator
     public void IsValid(string frequentFlyerNumber, out bool isValid)
     {
         throw new NotImplementedException("Simulate this real dependency being hard to use");
+    }
+
+    public string LicenseKey
+    {
+        get
+        {
+            throw new NotImplementedException("For demo purposes");
+        }
     }
 }

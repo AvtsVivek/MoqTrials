@@ -17,8 +17,40 @@ public class CreditCardApplicationEvaluator
             return CreditCardApplicationDecision.AutoAccepted;
         }
 
+        if (this.validator.LicenseKey == "EXPIRED")
+        {
+            return CreditCardApplicationDecision.ReferredToHuman;
+        }
+
         var isValidFrequentFlyerNumber =
             this.validator.IsValid(application.FrequentFlyerNumber);
+
+        if (!isValidFrequentFlyerNumber)
+        {
+            return CreditCardApplicationDecision.ReferredToHuman;
+        }
+
+        if (application.Age <= AutoReferralMaxAge)
+        {
+            return CreditCardApplicationDecision.ReferredToHuman;
+        }
+
+        if (application.GrossAnnualIncome < LowIncomeThreshold)
+        {
+            return CreditCardApplicationDecision.AutoDeclined;
+        }
+
+        return CreditCardApplicationDecision.ReferredToHuman;
+    }
+    public CreditCardApplicationDecision EvaluateUsingOut(CreditCardApplication application)
+    {
+        if (application.GrossAnnualIncome >= HighIncomeThreshold)
+        {
+            return CreditCardApplicationDecision.AutoAccepted;
+        }
+
+        this.validator.IsValid(application.FrequentFlyerNumber,
+            out var isValidFrequentFlyerNumber);
 
         if (!isValidFrequentFlyerNumber)
         {
